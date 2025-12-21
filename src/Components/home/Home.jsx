@@ -1,27 +1,50 @@
 import React from "react";
+import { Helmet } from "react-helmet-async"; // New SEO import
 import member1 from "../../assets/member4.jpeg";
 import { Link } from "react-router-dom";
 import CountUp from "react-countup";
 import { motion } from "framer-motion";
-// import member1 from "../../assets/member1.jpeg";
-// import member2 from "../../assets/member2.jpeg";
-import member3 from "../../assets/member3.jpeg";
-// import member4 from "../../assets/member4.jpeg";
-// import heroImage from "../../assets/member5.jpeg";
-
 import logo from "../../assets/logo.jpeg";
-
 import "./Home.css";
 
 const Home = () => {
   return (
     <div className="home-body">
+      {/* --- SEO METADATA START --- */}
+      <Helmet>
+        <title>
+          Adennil Foundation | Reclaiming Lives & Rebuilding Communities
+        </title>
+        <meta
+          name="description"
+          content="Adennil Foundation is dedicated to helping inmates embrace self-awareness and reintegrate into society. Founded by Elizabeth Ogallo."
+        />
+        <meta
+          name="keywords"
+          content="Adennil Foundation, Elizabeth Ogallo, Inmate Rehabilitation Kenya, Prison Reform, Counseling Psychology Kenya"
+        />
+
+        {/* Open Graph Tags (For Social Media Sharing) */}
+        <meta
+          property="og:title"
+          content="Adennil Foundation | Reclaiming Lives"
+        />
+        <meta
+          property="og:description"
+          content="Empowering inmates to rebuild their futures and families."
+        />
+        <meta property="og:image" content="/new-hero.jpeg" />
+        <meta property="og:url" content="https://yourdomain.com" />
+        <meta property="og:type" content="website" />
+      </Helmet>
+      {/* --- SEO METADATA END --- */}
+
       {/* Floating Donate Button */}
       <div className="floating-donate">
         <Link
           to="/get-involved"
           className="donate-btn"
-          aria-label="Get Involved / Donate"
+          aria-label="Donate to Adennil Foundation"
         >
           Donate
         </Link>
@@ -31,38 +54,11 @@ const Home = () => {
         onClick={() => {
           document.querySelector(".nav-links").classList.toggle("active");
         }}
+        aria-label="Menu"
       ></button>
 
       {/* Page Container */}
       <div className="page-container">
-        {/* Top Navigation */}
-        {/* <header className="top-navbar">
-          <div className="logo-section">
-          <img
-      src={logo}
-      alt="Adennil Foundation Logo"
-      className="logo-icon"
-    />
-            <h2 className="logo-text">Adennil</h2>
-          </div>
-
-          
-          <nav className="nav-links">
-  <Link to="/">Home</Link>
-  <Link to="/about">AboutUs</Link>
-  <Link to="/programs">Programs</Link>
-  <Link to="/get-involved">Get Involved</Link>
-  <Link to="/contact">Contact</Link>
-</nav>
-
-<Link 
-        to="/get-involved" 
-        className="donate-now-btn"
-      >
-        Donate Now
-      </Link>
-    </header> */}
-
         {/* Main Section */}
         <main className="main-content">
           <section className="hero-seection">
@@ -70,13 +66,11 @@ const Home = () => {
               className="hero-content"
               style={{
                 backgroundImage: `
-        linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.20) 70%),
-        url(${"/new-hero.jpeg"})
-      `,
+                  linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.20) 70%),
+                  url(${"/new-hero.jpeg"})
+                `,
                 backgroundSize: "cover",
                 backgroundRepeat: "no-repeat",
-
-                // backgroundPosition: 'center center',
                 backgroundAttachment: "fixed",
               }}
             >
@@ -97,7 +91,7 @@ const Home = () => {
               </div>
             </div>
           </section>
-          {/* Stats */}
+
           {/* Stats Section */}
           <section className="stats-section">
             <motion.div
@@ -140,9 +134,14 @@ const Home = () => {
             </motion.div>
           </section>
 
+          {/* Founder Section */}
           <section className="founder-section">
             <div className="founder-image">
-              <img src={member1} alt="Founder" />
+              {/* Updated alt text for SEO */}
+              <img
+                src={member1}
+                alt="Elizabeth Ogallo - Founder of Adennil Foundation"
+              />
             </div>
 
             <div className="founder-info">
@@ -170,7 +169,9 @@ const Home = () => {
           {/* Mission / Vision / Purpose */}
           <section className="mission-section">
             <div className="mission-card">
-              <span className="icon">🎯</span>
+              <span className="icon" role="img" aria-label="Mission">
+                🎯
+              </span>
               <h3>Our Mission</h3>
               <p>
                 To help inmates embrace the idea that being locked up does not
@@ -178,15 +179,19 @@ const Home = () => {
               </p>
             </div>
             <div className="mission-card">
-              <span className="icon">👁️</span>
+              <span className="icon" role="img" aria-label="Vision">
+                👁️
+              </span>
               <h3>Our Vision</h3>
               <p>
-                To be the leading foundation in assisting the inmates in knowing
-                that how you view yourself determines how you will be
+                To be the leading foundation in assisting inmates in knowing
+                that how you view yourself determines how you will be.
               </p>
             </div>
             <div className="mission-card">
-              <span className="icon">❤️</span>
+              <span className="icon" role="img" aria-label="Purpose">
+                ❤️
+              </span>
               <h3>Our Purpose</h3>
               <p>
                 To create a base that aims at having a sense of self awareness,
@@ -201,23 +206,15 @@ const Home = () => {
             <p>
               Thanks to timely support, his outstanding fine was cleared on
               December 30th 2024, allowing him to regain his freedom the very
-              next day. With this assistance, he was able to start a new job in
-              Kwale and secure safe housing marking the beginning of a hopeful
-              new chapter in his reintegration journey.
+              next day...
             </p>
 
             <div className="carousel">
               <div className="carousel-item">
-                {/* <img
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDMzmMn666kACZKuEw4G0FpU1-W3K5X_q4SZvtrrBeU7e8Pn8Kx7jmyuZElauIBQWNphy3h-Onl32_h8ujNCDa2m2NNS6Ditht2yejIbTh5mYaB6pjNY2wF4jNQoIsJBOj4t7fadwxysazxGOCI9AN4NsX1_OwGQbDkNR4zDC9QZ_vUse01VhY3l6rk4VRr2BJO9fQ0-xFnGSUVCJvc8ewefwSNMIyKSCm6FyCG8LNbL7bnDFuVx_l3CtkqYDLaMgkE2FrRmasdMq81"
-                  alt="John"
-                /> */}
-                <blockquote>
+                <blockquote title="Testimonial from Program Graduate">
                   “Adennil Foundation gave me the opportunity to continue to
-                  practice my career as a teacher ’”
+                  practice my career as a teacher.”
                 </blockquote>
-                {/* <p className="author">- John O.</p> */}
-                {/* <p className="role">Program Graduate</p> */}
               </div>
             </div>
           </section>
@@ -235,7 +232,7 @@ const Home = () => {
               <h3>Contact Us</h3>
               <ul>
                 <li>+254 725 978 804</li>
-                <li>@Adennilfoundation@gmail. Com</li>
+                <li>@Adennilfoundation@gmail.com</li>
               </ul>
             </div>
 
@@ -243,19 +240,19 @@ const Home = () => {
               <h3>Quick Links</h3>
               <ul>
                 <li>
-                  <a href="/">Home</a>
+                  <Link to="/">Home</Link>
                 </li>
                 <li>
-                  <a href="/about">About Us</a>
+                  <Link to="/about">About Us</Link>
                 </li>
                 <li>
-                  <a href="/programs">Programs</a>
+                  <Link to="/programs">Programs</Link>
                 </li>
                 <li>
-                  <a href="/get-involved">Get Involved</a>
+                  <Link to="/get-involved">Get Involved</Link>
                 </li>
                 <li>
-                  <a href="/contact">Contact</a>
+                  <Link to="/contact">Contact</Link>
                 </li>
               </ul>
             </div>

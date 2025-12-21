@@ -3,6 +3,7 @@ import emailjs from "emailjs-com";
 import { Link } from "react-router-dom";
 import "./ContactUs.css";
 import logo from "../../assets/logo.jpeg";
+import { Helmet } from "react-helmet-async";
 
 const ContactUs = () => {
   const form = useRef();
@@ -36,37 +37,25 @@ const ContactUs = () => {
 
   return (
     <div className="contactus-body">
+      {/* --- SEO METADATA --- */}
+      <Helmet>
+        <title>Contact Us | Adennil Foundation Nairobi</title>
+        <meta
+          name="description"
+          content="Get in touch with Adennil Foundation. Reach out for volunteer opportunities, partnerships, or to support our prison rehabilitation programs in Kenya."
+        />
+        <meta
+          name="keywords"
+          content="contact Adennil Foundation, prison ministry Nairobi, volunteer Kenya, donation inquiries"
+        />
+      </Helmet>
+
       {/* Floating Donate Button */}
-      <button className="floating-donate" aria-label="Donate">
+      <button className="floating-donate pulse" aria-label="Donate">
         <span className="material-symbols-outlined">favorite</span>
         <span className="sr-only">Donate</span>
       </button>
 
-      {/* Top Navigation Bar */}
-      {/* <header className="top-navbar">
-        <div className="logo-section">
-          <img
-            src={logo}
-            alt="Adennil Foundation Logo"
-            className="logo-icon"
-          />
-          <h2 className="logo-text">Adennil Foundation</h2>
-        </div>
-
-        <nav className="nav-links">
-          <Link to="/">Home</Link>
-          <Link to="/about">AboutUs</Link>
-          <Link to="/programs">Programs</Link>
-          <Link to="/get-involved">Get Involved</Link>
-          <Link to="/contact">Contact</Link>
-        </nav>
-
-        <Link to="/get-involved" className="donate-now-btn">
-          Donate Now
-        </Link>
-      </header> */}
-
-      {/* Main Content */}
       <main className="contact-main split-layout">
         <div className="contact-container">
           {/* Floating CTA Card */}
@@ -80,58 +69,60 @@ const ContactUs = () => {
             <h2 className="contact-title">Get in Touch</h2>
             <p className="contact-description">
               We'd love to hear from you. Please fill out this form for any
-              inquiries, partnerships, or support, and we will get back to you
-              as soon as possible.
+              inquiries, partnerships, or support.
             </p>
 
             <form ref={form} onSubmit={sendEmail} className="contact-form">
               <div className="form-row">
-                <label>
-                  Full Name
+                <div className="input-group">
+                  <label htmlFor="user_name">Full Name</label>
                   <input
+                    id="user_name"
                     type="text"
                     name="user_name"
                     placeholder="Enter your full name"
                     required
                   />
-                </label>
-                <label>
-                  Email Address
+                </div>
+                <div className="input-group">
+                  <label htmlFor="user_email">Email Address</label>
                   <input
+                    id="user_email"
                     type="email"
                     name="user_email"
                     placeholder="Enter your email address"
                     required
                   />
-                </label>
+                </div>
               </div>
-              <label>
-                Subject
+              <div className="input-group">
+                <label htmlFor="subject">Subject</label>
                 <input
+                  id="subject"
                   type="text"
                   name="subject"
                   placeholder="What is your message about?"
                   required
                 />
-              </label>
-              <label>
-                Your Message
+              </div>
+              <div className="input-group">
+                <label htmlFor="message">Your Message</label>
                 <textarea
+                  id="message"
                   name="message"
                   placeholder="Write your message here..."
                   required
                 />
-              </label>
+              </div>
               <button type="submit" className="submit-btn gradient-btn">
                 Send Message
               </button>
             </form>
 
-            {/* Success / Error Message */}
             {successMessage && (
               <p
                 className={`form-feedback ${
-                  successMessage.startsWith("✅") ? "success" : "error"
+                  successMessage.includes("✅") ? "success" : "error"
                 }`}
               >
                 {successMessage}
@@ -156,7 +147,7 @@ const ContactUs = () => {
                 <p>
                   <strong>Phone Number</strong>
                   <br />
-                  <a href="tel:+254708833979">+254 725 978 804</a>
+                  <a href="tel:+254725978804">+254 725 978 804</a>
                 </p>
               </div>
               <div className="info-card">
@@ -164,8 +155,8 @@ const ContactUs = () => {
                 <p>
                   <strong>Email Address</strong>
                   <br />
-                  <a href="mailto:Adennilfoundation@gmail.Com">
-                    @Adennilfoundation@gmail.Com
+                  <a href="mailto:Adennilfoundation@gmail.com">
+                    Adennilfoundation@gmail.com
                   </a>
                 </p>
               </div>
@@ -181,32 +172,26 @@ const ContactUs = () => {
               href="https://facebook.com/adennilfoundation"
               target="_blank"
               rel="noopener noreferrer"
+              className="social-item"
             >
               <span className="material-symbols-outlined">facebook</span>{" "}
               Facebook
             </a>
-            <a
-              href="https://twitter.com/adennilfoundation"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href="#" className="social-item">
               <span className="material-symbols-outlined">alternate_email</span>{" "}
-              Tiktok
+              TikTok
             </a>
             <a
               href="https://instagram.com/adennilfoundation"
               target="_blank"
               rel="noopener noreferrer"
+              className="social-item"
             >
               <span className="material-symbols-outlined">photo_camera</span>{" "}
               Instagram
             </a>
-            <a
-              href="https://linkedin.com/company/adennilfoundation"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <span className="material-symbols-outlined">business_center</span>{" "}
+            <a href="#" className="social-item">
+              <span className="material-symbols-outlined">play_circle</span>{" "}
               Youtube
             </a>
           </div>
@@ -215,34 +200,28 @@ const ContactUs = () => {
         {/* FAQ Section */}
         <section className="contact-faq">
           <h2>Frequently Asked Questions</h2>
-          <div className="faq-item">
-            <h4>How can I volunteer?</h4>
-            <p>
-              Fill out the form above or email us directly. We’ll guide you
-              through the process.
-            </p>
-          </div>
-          <div className="faq-item">
-            <h4>Where does my donation go?</h4>
-            <p>
-              At Adennil Foundation, we guarantee that 100% of your generous
-              donation fuels the journey of reclamation. The funds are dedicated
-              to programs that help men regain their dignity and identity,
-              specifically on the following programs; <br />
-              1.⁠ ⁠Educational & Vocational Tools <br />
-              2.⁠ ⁠Therapeutic & Character Development Programs: <br />
-              3.⁠ ⁠Payment of Outstanding Fines and Fees <br />
-              4.⁠ ⁠Post-Release Starter Kits <br />
-              5.⁠ ⁠Job Placement and Mentorship <br />
-              6.⁠ ⁠Health and Wellness Access
-            </p>
-          </div>
-          <div className="faq-item">
-            <h4>Can organizations partner with you?</h4>
-            <p>
-              Yes! We welcome collaborations with corporates, NGOs, and
-              community groups.
-            </p>
+          <div className="faq-grid">
+            <div className="faq-item">
+              <h4>How can I volunteer?</h4>
+              <p>
+                Fill out the form above or email us directly. We’ll guide you
+                through the vetting and onboarding process.
+              </p>
+            </div>
+            <div className="faq-item">
+              <h4>Where does my donation go?</h4>
+              <p>
+                100% of your donation fuels reclamation programs including
+                vocational tools, therapy, and post-release starter kits.
+              </p>
+            </div>
+            <div className="faq-item">
+              <h4>Can organizations partner with you?</h4>
+              <p>
+                Yes! We actively collaborate with corporates, NGOs, and
+                community groups for holistic impact.
+              </p>
+            </div>
           </div>
         </section>
       </main>
@@ -252,39 +231,36 @@ const ContactUs = () => {
         <div className="footer-columns">
           <div>
             <h3>Adennil Foundation</h3>
-            <p>Reclaiming lives</p>
+            <p>Reclaiming lives.</p>
           </div>
-
           <div>
             <h3>Contact Us</h3>
             <ul>
               <li>+254 725 978 804</li>
-              <li>@Adennilfoundation@gmail.Com</li>
+              <li>Adennilfoundation@gmail.com</li>
             </ul>
           </div>
-
           <div>
             <h3>Quick Links</h3>
             <ul>
               <li>
-                <a href="/">Home</a>
+                <Link to="/">Home</Link>
               </li>
               <li>
-                <a href="/about">About Us</a>
+                <Link to="/about">About Us</Link>
               </li>
               <li>
-                <a href="/programs">Programs</a>
+                <Link to="/programs">Programs</Link>
               </li>
               <li>
-                <a href="/get-involved">Get Involved</a>
+                <Link to="/get-involved">Get Involved</Link>
               </li>
               <li>
-                <a href="/contact">Contact</a>
+                <Link to="/contact">Contact</Link>
               </li>
             </ul>
           </div>
         </div>
-
         <div className="footer-bottom">
           <p>© 2024 Adennil Foundation. All rights reserved.</p>
           <p className="developer-credit">

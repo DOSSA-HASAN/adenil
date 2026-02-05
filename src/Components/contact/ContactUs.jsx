@@ -13,10 +13,10 @@ const ContactUs = () => {
     e.preventDefault();
     emailjs
       .sendForm(
-        "service_u7mbyuf", // ✅ Your Service ID
-        "template_c2ribz3", // ✅ Your Template ID
+        "service_u7mbyuf",
+        "template_gues3lm",
         form.current,
-        "nBIbA9Fj71liLJrVt" // ✅ Your Public Key
+        "nBIbA9Fj71liLJrVt",
       )
       .then(
         (result) => {
@@ -273,3 +273,4 @@ const ContactUs = () => {
 };
 
 export default ContactUs;
+
